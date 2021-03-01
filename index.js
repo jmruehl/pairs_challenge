@@ -68,18 +68,6 @@ function notMatchedCards() {
     })
 }
 
-/*
-function notMatchedCards() {
-    document.querySelectorAll('img').forEach(card => {
-        if(card.style.background !== 'rgb(254, 231, 178)')
-            {card.style.opacity = '0'
-        }
-        if (card.style.background !== 'rgb(254, 231, 178) none repeat scroll 0% 0%') {
-            card.style.opacity = '0'
-        }
-    })
-} */
-
 
 function restartGame() {
     location.reload()
@@ -99,8 +87,6 @@ function getRandomPhoto() {
 
 function showCard(card) {
         card.style.opacity = '1'
-
-    
 }
 
 
@@ -108,7 +94,7 @@ function toggleButtons() {
    btn4.style.display = 'none'
    btn10.style.display = 'none'
    btn16.style.display = 'none'
-   btnMatch.style.display = 'flex'
-   btnNo.style.display = 'flex'
-   btnRestart.style.display = 'flex'
+   btnMatch.style.display = 'block'
+   btnNo.style.display = 'block'
+   btnRestart.style.display = 'block'
 }
