@@ -1,12 +1,16 @@
 // Remember: You rock! 🎸
-
+//Data from DOM
+const header = document.getElementsByTagName('header')
+const h1 = document.getElementsByTagName('h1')
 const btn4 = document.getElementById('btn4')
 const btn10 = document.getElementById('btn10')
 const btn16 = document.getElementById('btn16')
 const btnMatch = document.getElementById('match')
 const btnNo = document.getElementById('no-match')
 const btnRestart = document.getElementById('restart')
+const btnWrapper = document.getElementsByClassName('btn-wrapper')
 const gameContainer = document.getElementById('game')
+
 const photos = [] //Array with url of photos
 let cards = [] // Array with each photo twice at random positioning
 
@@ -21,8 +25,8 @@ btnRestart.addEventListener('click', event => restartGame())
 
 
 function createGame(num) {
-    //Toggle buttons
-    toggleButtons()    
+    //Display game view
+    displayGame()    
     // Get random photos from Foodish    
     for (let i = 0; i < num; i++){
         photos.push(getRandomPhoto())
@@ -41,6 +45,7 @@ function createGame(num) {
         const img = document.createElement('img')
         div.className = 'card-background'
         img.src = card.url
+        img.className = 'card-image'
         img.addEventListener('click', event => showCard(img))
         div.appendChild(img)
         gameContainer.appendChild(div)
@@ -51,7 +56,7 @@ function matchedCards() {
     const cards = document.querySelectorAll('img')
     cards.forEach(card => {
         if(card.style.opacity === '1') {
-            card.style.background = '#fee7b2'
+            card.style.background = 'whitesmoke'
             }
         })
 }
@@ -59,7 +64,8 @@ function matchedCards() {
 
 function notMatchedCards() {
     document.querySelectorAll('img').forEach(card => {
-        if((card.style.background === 'rgb(254, 231, 178)') || (card.style.background === 'rgb(254, 231, 178) none repeat scroll 0% 0%'))
+        console.log(card.style.background)
+        if((card.style.background === 'whitesmoke') || (card.style.background === 'whitesmoke none repeat scroll 0% 0%'))
             {card.style.opacity = '1'
         } else {
             card.style.opacity = '0'
@@ -78,10 +84,10 @@ function getRandomPhoto() {
     const num = Math.ceil(Math.random()*85)
     if (photos.find(el => el === num) === undefined) {
     return `https://foodish-api.herokuapp.com/images/pizza/pizza${num}.jpg`
-       } else {
+       } /*else {
            console.log('else ausgelöst')
            getRandomPhoto()
-       }
+       }*/
 }
 
 
@@ -90,11 +96,14 @@ function showCard(card) {
 }
 
 
-function toggleButtons() {
-   btn4.style.display = 'none'
-   btn10.style.display = 'none'
-   btn16.style.display = 'none'
-   btnMatch.style.display = 'block'
-   btnNo.style.display = 'block'
-   btnRestart.style.display = 'block'
+function displayGame() {
+    header[0].className = 'header-game'
+    h1[0].className = 'h1-game'
+    btn4.style.display = 'none'
+    btn10.style.display = 'none'
+    btn16.style.display = 'none'
+    btnWrapper[0].className = 'btn-wrapper btn-wrapper-game'
+    btnMatch.style.display = 'block'
+    btnNo.style.display = 'block'
+    btnRestart.style.display = 'block'
 }
